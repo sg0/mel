@@ -1,6 +1,6 @@
-CXX = mpicxx
+CXX = CC
 # use -xmic-avx512 instead of -xHost for Intel Xeon Phi platforms
-OPTFLAGS = -O3 -DCHECK_RESULTS  #-DPRINT_RESULTS #-DDEBUG_PRINTF
+OPTFLAGS = -O3 #-DCHECK_RESULTS  #-DPRINT_RESULTS #-DDEBUG_PRINTF
 
 # Options for choosing the MPI variants
 #-DUSE_MPI_NPP
@@ -15,6 +15,9 @@ SNTFLAGS = -std=c++17 -fsanitize=address -O1 -fno-omit-frame-pointer
 CXXFLAGS = -std=c++17 -g $(OPTFLAGS)
 
 # Make this 0 if you don't want to use UPCXX
+# Note: Use UPC++ versions from: https://github.com/ECP-ExaGraph/mel-upx
+#       UPC++ version included here is not actively maintained
+
 ENABLE_UPCXX=0
 ifeq ($(ENABLE_UPCXX),1)
     CXXFLAGS += -DUPCXX_ASSERT_ENABLED=1 -DUPCXX_BACKEND=1 -DUPCXX_BACKEND_GASNET_SEQ=1 -DUPCXX_MPSC_QUEUE_ATOMIC=1 -D_GNU_SOURCE=1 -DGASNET_SEQ -I/home/sg/builds/upcxx/gasnet.debug/include -I/home/sg/builds/upcxx/gasnet.debug/include/smp-conduit -I/home/sg/builds/upcxx/upcxx.debug.gasnet_seq.smp/include -std=c++14 -g -wd654 -wd1125 -wd279 -wd1572
