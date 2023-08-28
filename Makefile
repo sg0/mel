@@ -8,7 +8,9 @@ OPTFLAGS = -O3 #-DCHECK_RESULTS  #-DPRINT_RESULTS #-DDEBUG_PRINTF
 #-DUSE_MPI_P2P
 #-DUSE_MPI_NCL
 #-DUSE_MPI_RMA
+
 #-DUSE_MPI_UPX, use -DREPLACE_UPX_WITH_RMA to replace UPCXX with MPI calls
+#to compare UPX version with MPI, use -DUSE_MPI_RMA
 
 # use export ASAN_OPTIONS=verbosity=1 to check ASAN output
 SNTFLAGS = -std=c++17 -fsanitize=address -O1 -fno-omit-frame-pointer
